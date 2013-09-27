@@ -1,6 +1,0 @@
-C:\Users\dfisher\AppData\Local\Microsoft\VisualStudio\11.0Exp\Extensions\devcoach\KarmaJs\1.0\\devcoach.Tools.KarmaJs.dll
-C:\Users\dfisher\AppData\Local\Microsoft\VisualStudio\11.0Exp\Extensions\devcoach\KarmaJs\1.0\\devcoach.Tools.KarmaJs.pkgdef
-C:\Users\dfisher\AppData\Local\Microsoft\VisualStudio\11.0Exp\Extensions\devcoach\KarmaJs\1.0\\extension.vsixmanifest
-C:\Users\dfisher\AppData\Local\Microsoft\VisualStudio\11.0Exp\Extensions\devcoach\KarmaJs\1.0\\devcoach.Tools.KarmaJs.pdb
-C:\Users\dfisher\AppData\Local\Microsoft\VisualStudio\11.0Exp\Extensions\devcoach\KarmaJs\1.0\ItemTemplates\\KarmaJSConfiguration.zip
-C:\Users\dfisher\AppData\Local\Microsoft\VisualStudio\11.0Exp\Extensions\devcoach\KarmaJs\1.0\Resources\LICENSE.txt
