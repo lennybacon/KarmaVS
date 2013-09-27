@@ -1,67 +1,66 @@
 module.exports = function (config) {
   config.set({
+      // Test frameworks to use
+    frameworks: ['jasmine', 'ng-scenario'],
 
-  // Karma configuration
-frameworks: ['jasmine', 'ng-scenario'],
+    // Base path, that will be used to resolve files and exclude
+    basePath: '.',
 
-// base path, that will be used to resolve files and exclude
-basePath: '.',
+    // List of files / patterns to load in the browser
+    files: [
+      'js/libs/angular/angular.js',
+      'js/libs/angular-mocks/angular-mocks.js',
+      'js/app/*.js',
+      'js/app/**/*.js',
+      'js/tests/specs/**/*.js',
+      'views/**/*.html'
+    ],
 
-// list of files / patterns to load in the browser
-files: [
-  'js/libs/angular/angular.js',
-  'js/libs/angular-mocks/angular-mocks.js',
-  'js/app/*.js',
-  'js/app/**/*.js',
-  'js/tests/specs/**/*.js',
-  'views/**/*.html'
-],
+    // Preprocessors to convert e.g. html to angular template cache items
+    preprocessors: {
+	    'views/**/*.html': 'ng-html2js'
+    },
 
-preprocessors: {
-	'views/**/*.html': 'ng-html2js'
-},
+    // List of files to exclude
+    exclude : [],
 
-// list of files to exclude
-exclude : [],
+    // Test results reporter to use possible values: dots, growl, junit, ...
+    reporters : ['progress'],
 
-// test results reporter to use
-// possible values: dots || progress || growl
-reporters : ['progress'],
+    // Web server port
+    port: 8080,
 
-// web server port
-port: 8080,
+    // CLI runner port
+    runnerPort: 9100,
 
-// cli runner port
-runnerPort: 9100,
+    // Enable / disable colors in the output (reporters and logs)
+    colors: true,
 
-// enable / disable colors in the output (reporters and logs)
-colors: true,
+    // Level of logging: LOG_DISABLE, LOG_ERROR, LOG_WARN, LOG_INFO, LOG_DEBUG
+    logLevel: config.LOG_INFO,
 
-// level of logging
-// possible values: LOG_DISABLE || LOG_ERROR || LOG_WARN || LOG_INFO || LOG_DEBUG
-logLevel: config.LOG_DEBUG,
+    // Enable / disable watching file and execute tests on changes
+    autoWatch : true,
 
-// enable / disable watching file and executing tests whenever any file changes
-autoWatch : true,
+    // Start these browsers, currently available:
+    // - Chrome
+    // - ChromeCanary
+    // - Firefox
+    // - Opera
+    // - Safari (only Mac)
+    // - PhantomJS
+    // - IE (only Windows)
+    browsers: ['PhantomJS'],
 
-// Start these browsers, currently available:
-// - Chrome
-// - ChromeCanary
-// - Firefox
-// - Opera
-// - Safari (only Mac)
-// - PhantomJS
-// - IE (only Windows)
-browsers : ['Chrome'],
+    // If browser does not capture in given timeout [ms], kill it
+    captureTimeout: 5000,
 
-// If browser does not capture in given timeout [ms], kill it
-captureTimeout: 5000,
+    // Continuous Integration mode
+    // if true, it capture browsers, run tests and exit
+    singleRun: false,
 
-// Continuous Integration mode
-// if true, it capture browsers, run tests and exit
-singleRun: false,
-
-plugins: [
+    // Plugins
+    plugins: [
       'karma-jasmine',
       'karma-ng-scenario',
       'karma-ng-html2js-preprocessor',
@@ -69,7 +68,5 @@ plugins: [
       'karma-firefox-launcher',
       'karma-junit-reporter'
     ]
-
-});
-
+  });
 }

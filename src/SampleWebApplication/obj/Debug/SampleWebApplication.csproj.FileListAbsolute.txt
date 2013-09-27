@@ -1,0 +1,5 @@
+D:\dfisher\Projects\oss\KarmaVS\src\SampleWebApplication\bin\SampleWebApplication.dll
+D:\dfisher\Projects\oss\KarmaVS\src\SampleWebApplication\bin\SampleWebApplication.pdb
+D:\dfisher\Projects\oss\KarmaVS\src\SampleWebApplication\obj\Debug\SampleWebApplication.csprojResolveAssemblyReference.cache
+D:\dfisher\Projects\oss\KarmaVS\src\SampleWebApplication\obj\Debug\SampleWebApplication.dll
+D:\dfisher\Projects\oss\KarmaVS\src\SampleWebApplication\obj\Debug\SampleWebApplication.pdb
