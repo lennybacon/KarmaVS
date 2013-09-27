@@ -112,7 +112,7 @@ namespace devcoach.Tools
             if (nodeFilePath == null)
             {
                 karmaOutputWindowPane.OutputString(
-                  "ERROR: Node InstallationPath not found.");
+                  "ERROR: Node not found. Download and install from: http://www.nodejs.org");
                 karmaOutputWindowPane.OutputString(Environment.NewLine);
                 return;
             }
@@ -467,7 +467,8 @@ namespace devcoach.Tools
             data = _outputDir.Replace(data, string.Empty);
             data = _browserInfo.Replace(data, string.Empty);
             data = _details.Replace(data, string.Empty);
-            if (data.StartsWith(((char)27).ToString() + ((char)27).ToString() + "xecuted"))
+            data = data.TrimStart((char)27);
+            if (data.StartsWith("xecuted"))
             {
                 data = "E" + data;
             }

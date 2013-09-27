@@ -64,6 +64,7 @@ module.exports = function (config) {
       'karma-jasmine',
       'karma-ng-scenario',
       'karma-ng-html2js-preprocessor',
+      'Karma-phantomjs-launcher',
       'karma-chrome-launcher',
       'karma-firefox-launcher',
       'karma-junit-reporter'

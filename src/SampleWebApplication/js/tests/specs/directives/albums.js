@@ -18,7 +18,7 @@ describe('Directive: albums', function() {
 		scope.albums = [{
 			'title': 'Memoirs of the Elephant Man'
 		}, {
-			'title': 'Temporary Forever' 
+			'title': 'Temporary Forever'  
 		}, {
 			'title': 'Cosmic Cleavage'
 		}, {
