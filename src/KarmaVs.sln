@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KarmaJs", "KarmaJs\KarmaJs.csproj", "{1EB55045-B486-467D-B239-56010D702375}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KarmaVs", "KarmaVs\KarmaVs.csproj", "{1EB55045-B486-467D-B239-56010D702375}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleWebApplication", "SampleWebApplication\SampleWebApplication.csproj", "{5150F8B5-7C3B-4B17-94BE-1BDC0CC76D27}"
 EndProject

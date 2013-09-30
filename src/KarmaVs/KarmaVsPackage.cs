@@ -6,11 +6,13 @@ using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text.RegularExpressions;
+using System.Windows.Forms;
 using EnvDTE;
 using EnvDTE80;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
 using Microsoft.Win32;
+using Process = EnvDTE.Process;
 
 namespace devcoach.Tools
 {
@@ -33,8 +35,8 @@ namespace devcoach.Tools
     [InstalledProductRegistration("#110", "#112", "1.0", IconResourceID = 400)]
     // This attribute is needed to let the shell know that this package exposes some menus.
     [ProvideMenuResource("Menus.ctmenu", 1)]
-    [Guid(GuidList.guidOutputRedirectPkgString)]
-    public sealed class KarmaJsPackage : Package
+    [Guid(GuidList.guidKarmaVsPkgString)]
+    public sealed class KarmaVsPackage : Package
     {
         private static readonly object _s_applicationLock = new object();
         public static DTE2 Application { get; private set; }
@@ -53,7 +55,7 @@ namespace devcoach.Tools
         /// not sited yet inside Visual Studio environment. The place to do all the other 
         /// initialization is the Initialize method.
         /// </summary>
-        public KarmaJsPackage()
+        public KarmaVsPackage()
         {
             Debug.WriteLine(string.Format(CultureInfo.CurrentCulture, "Entering constructor for: {0}", this.ToString()));
         }
@@ -94,15 +96,25 @@ namespace devcoach.Tools
             if (null != mcs)
             {
                 // Create the command for the menu item.
-                CommandID menuCommandID = new CommandID(GuidList.guidOutputRedirectCmdSet, (int)PkgCmdIDList.cmdidRedirectToOutputWindow);
-                MenuCommand menuItem = new MenuCommand(MenuItemCallback, menuCommandID);
-                mcs.AddCommand(menuItem);
+                CommandID menuCommandID1 = new CommandID(GuidList.guidToggleKarmaVsUnitCmdSet, (int)PkgCmdIDList.cmdidToggleKarmaVsUnit);
+                MenuCommand menuItem1 = new MenuCommand(KarmaVsUnit, menuCommandID1);
+                mcs.AddCommand(menuItem1);
+
+                // Create the command for the menu item.
+                CommandID menuCommandID2 = new CommandID(GuidList.guidToggleKarmaVsE2eCmdSet, (int)PkgCmdIDList.cmdidToggleKarmaVsE2e);
+                MenuCommand menuItem2 = new MenuCommand(KarmaVsE2e, menuCommandID2);
+                mcs.AddCommand(menuItem2);
             }
         }
 
 
 
         private void SolutionEventsOpened()
+        {
+            RunKarmaVS();
+        }
+
+        private void RunKarmaVS(string config = "unit")
         {
             karmaOutputWindowPane.Clear();
 
@@ -112,46 +124,45 @@ namespace devcoach.Tools
             if (nodeFilePath == null)
             {
                 karmaOutputWindowPane.OutputString(
-                  "ERROR: Node not found. Download and install from: http://www.nodejs.org");
+                    "ERROR: Node not found. Download and " +
+                    "install from: http://www.nodejs.org");
                 karmaOutputWindowPane.OutputString(Environment.NewLine);
                 return;
             }
 
             karmaOutputWindowPane.OutputString(
-              "INFO: Node installation found: " + nodeFilePath);
+                "INFO: Node installation found: " + nodeFilePath);
             karmaOutputWindowPane.OutputString(Environment.NewLine);
 
             var karmaFilePath = GetKarmaPath();
             if (karmaFilePath == null)
             {
                 karmaOutputWindowPane.OutputString(
-                  "ERROR: Karma was not found. Run \"npm install -g karma\"...");
+                    "ERROR: Karma was not found. Run \"npm install -g karma\"...");
                 karmaOutputWindowPane.OutputString(Environment.NewLine);
                 return;
             }
 
             karmaOutputWindowPane.OutputString(
-              "INFO: Karma installation found: " + karmaFilePath);
+                "INFO: Karma installation found: " + karmaFilePath);
             karmaOutputWindowPane.OutputString(Environment.NewLine);
 
             var chromePath = GetChromePath();
             if (chromePath != null)
             {
                 karmaOutputWindowPane.OutputString(
-                  "INFO: Found Google Chrome : " + chromePath);
+                    "INFO: Found Google Chrome : " + chromePath);
                 karmaOutputWindowPane.OutputString(Environment.NewLine);
                 Environment.SetEnvironmentVariable("CHROME_BIN", chromePath);
-
             }
 
             var mozillaPath = GetMozillaPath();
             if (mozillaPath != null)
             {
                 karmaOutputWindowPane.OutputString(
-                  "INFO: Found Mozilla Firefox: " + mozillaPath);
+                    "INFO: Found Mozilla Firefox: " + mozillaPath);
                 karmaOutputWindowPane.OutputString(Environment.NewLine);
                 Environment.SetEnvironmentVariable("FIREFOX_BIN", mozillaPath);
-
             }
 
 
@@ -181,18 +192,18 @@ namespace devcoach.Tools
                         projectGuids.Contains(webSite))
                     {
                         karmaOutputWindowPane.OutputString(
-                          "INFO: Web project found: " + project.Name);
+                            "INFO: Web project found: " + project.Name);
                         karmaOutputWindowPane.OutputString(Environment.NewLine);
 
                         projectDir =
-                          Path.GetDirectoryName(project.FileName);
+                            Path.GetDirectoryName(project.FileName);
                         karmaConfigFilePath =
-                            Path.Combine(projectDir, "karma.conf.js");
+                            Path.Combine(projectDir, "karma." + config + ".conf.js");
 
                         if (File.Exists(karmaConfigFilePath))
                         {
                             karmaOutputWindowPane.OutputString(
-                              "INFO: Configuration found: " + karmaConfigFilePath);
+                                "INFO: Configuration found: " + karmaConfigFilePath);
                             karmaOutputWindowPane.OutputString(Environment.NewLine);
                             karmaProject = project;
                             break;
@@ -208,8 +219,9 @@ namespace devcoach.Tools
                 projectDir == null)
             {
                 karmaOutputWindowPane.OutputString(
-                  "INFO: No web project found with a file named \"karma.conf.js\" " +
-                  "in the root directory.");
+                    "INFO: No web project found with a file " +
+                    "named \"karma." + config + ".conf.js\" " +
+                    "in the root directory.");
                 karmaOutputWindowPane.OutputString(Environment.NewLine);
                 return;
             }
@@ -222,22 +234,22 @@ namespace devcoach.Tools
                 karmaOutputWindowPane.OutputString(Environment.NewLine);
 
                 webServerProcess =
-                   new System.Diagnostics.Process
-                   {
-                       StartInfo =
-                       {
-                           CreateNoWindow = true,
-                           FileName = nodeFilePath,
-                           Arguments = nodeServerFilePath,
-                           RedirectStandardOutput = true,
-                           RedirectStandardError = true,
-                           UseShellExecute = false,
-                           WindowStyle = ProcessWindowStyle.Hidden,
-                       },
+                    new System.Diagnostics.Process
+                    {
+                        StartInfo =
+                        {
+                            CreateNoWindow = true,
+                            FileName = nodeFilePath,
+                            Arguments = nodeServerFilePath,
+                            RedirectStandardOutput = true,
+                            RedirectStandardError = true,
+                            UseShellExecute = false,
+                            WindowStyle = ProcessWindowStyle.Hidden,
+                        },
+                    };
 
-                   };
-
-                karmaOutputWindowPane.OutputString("INFO: Starting node server...");
+                karmaOutputWindowPane.OutputString(
+                    "INFO: Starting node server...");
                 karmaOutputWindowPane.OutputString(Environment.NewLine);
                 webServerProcess.Start();
             }
@@ -261,7 +273,6 @@ namespace devcoach.Tools
                         UseShellExecute = false,
                         WindowStyle = ProcessWindowStyle.Hidden,
                     },
-
                 };
             karmaProcess.ErrorDataReceived += OutputReceived;
             karmaProcess.OutputDataReceived += OutputReceived;
@@ -281,6 +292,7 @@ namespace devcoach.Tools
                 karmaOutputWindowPane.OutputString(Environment.NewLine);
             }
         }
+
         #endregion
 
         #region KarmaProcessOnExited()
@@ -293,6 +305,34 @@ namespace devcoach.Tools
         #region ShutdownKarma()
         private void ShutdownKarma()
         {
+            try
+            {
+                foreach (System.Diagnostics.Process proc in
+                    System.Diagnostics.Process.GetProcessesByName("phantomjs"))
+                {
+                    karmaOutputWindowPane.OutputString("KILL: phantomjs");
+                    karmaOutputWindowPane.OutputString(Environment.NewLine);
+                    proc.Kill();
+                }
+            }
+            catch
+            {
+            }
+
+            try
+            {
+                foreach (System.Diagnostics.Process proc in
+                    System.Diagnostics.Process.GetProcessesByName("phantomjs.exe"))
+                {
+                    karmaOutputWindowPane.OutputString("KILL: phantomjs.exe");
+                    karmaOutputWindowPane.OutputString(Environment.NewLine);
+                    proc.Kill();
+                }
+            }
+            catch
+            {
+            }
+
             if (karmaProcess != null)
             {
                 try
@@ -431,7 +471,7 @@ namespace devcoach.Tools
         /// See the Initialize method to see how the menu item is associated to this function using
         /// the OleMenuCommandService service and the MenuCommand class.
         /// </summary>
-        private void MenuItemCallback(object sender, EventArgs e)
+        private void KarmaVsUnit(object sender, EventArgs e)
         {
             if (karmaProcess != null)
             {
@@ -444,8 +484,25 @@ namespace devcoach.Tools
                 return;
             }
 
-            SolutionEventsOpened();
+            RunKarmaVS("unit");
         }
+
+        private void KarmaVsE2e(object sender, EventArgs e)
+        {
+            if (karmaProcess != null)
+            {
+                ShutdownKarma();
+
+                karmaOutputWindowPane.Clear();
+                karmaOutputWindowPane.OutputString("INFO: Karma has shut down!");
+                karmaOutputWindowPane.OutputString(Environment.NewLine);
+
+                return;
+            }
+
+            RunKarmaVS("e2e");
+        }
+
         private void OutputReceived(object sender, DataReceivedEventArgs dataReceivedEventArgs)
         {
             try

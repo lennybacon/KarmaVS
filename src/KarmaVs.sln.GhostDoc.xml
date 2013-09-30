@@ -9,7 +9,7 @@
   </SpellChecker>
 <HelpConfigurations selected="HelpFile">
   <HelpConfiguration name="HelpFile">
-    <OutputPath>D:\License.Manager-master\License.Manager-master\src\Help</OutputPath>
+    <OutputPath>D:\dfisher\Projects\oss\KarmaVS\src\Help</OutputPath>
     <ImageFolderPath />
     <HtmlFormats>
       <HtmlHelp>true</HtmlHelp>

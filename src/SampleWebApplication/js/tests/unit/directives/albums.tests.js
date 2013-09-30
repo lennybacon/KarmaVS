@@ -8,9 +8,9 @@ describe('Directive: albums', function() {
 	beforeEach(module('views/templates/albums.html'));
 
 	beforeEach(inject(function($rootScope, $compile) {
-		element = angular.element('<div class="well span6">' + 
+		element = angular.element('<div class="well span6">' +
 			'<h3>Busdriver Albums:</h3>' +
-			'<albums ng-repeat="album in albums" title="{{album.title}}">' + 
+			'<albums ng-repeat="album in albums" title="{{album.title}}">' +
 			'</albums></div>');
 
 		scope = $rootScope;
@@ -18,7 +18,7 @@ describe('Directive: albums', function() {
 		scope.albums = [{
 			'title': 'Memoirs of the Elephant Man'
 		}, {
-			'title': 'Temporary Forever'  
+			'title': 'Temporary Forever'
 		}, {
 			'title': 'Cosmic Cleavage'
 		}, {
@@ -38,7 +38,7 @@ describe('Directive: albums', function() {
 	it("should have the correct amount of albums in the list", function() {
 		var list = element.find('li');
 		expect(list.length).toBe(7);
-		
+
 	});
 
 	it("should display the correct album title for the first item in the albums list", function() {

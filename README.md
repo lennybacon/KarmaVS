@@ -1,6 +1,6 @@
 #KarmaVS
 A [Visual Studio](http://www.microsoft.com/visualstudio) Extension to 
-integrate [KarmaJS](http://karma-runner.github.io/0.10/index.html) and enable 
+integrate [Karma](http://karma-runner.github.io/0.10/index.html) and enable 
 coutinous JavaScript testing. Key features are the automatic startup of Karma 
 when loading a solution and redirection of Karma's console output to 
 Visual Studios output window.
@@ -8,7 +8,7 @@ Visual Studios output window.
 ## Prerequisites
 - Install nodeJS from http://www.nodejs.org
 
-- Install KarmaJS by running the command line 
+- Install Karma by running the command line 
 
 	npm install -g karma
 

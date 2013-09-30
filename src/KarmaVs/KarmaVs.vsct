@@ -25,7 +25,7 @@
 
   <!--The Commands section is where we the commands, menus and menu groups are defined.
       This section uses a Guid to identify the package that provides the command defined inside it. -->
-  <Commands package="guidOutputRedirectPkg">
+  <Commands package="guidKarmaVsPkg">
     <!-- Inside this section we have different sub-sections: one for the menus, another  
     for the menu groups, one for the buttons (the actual commands), one for the combos 
     and the last one for the bitmaps used. Each element is identified by a command id that  
@@ -41,11 +41,9 @@
          must be a menu. -->
     <Groups>
 
-      <Group guid="guidOutputRedirectCmdSet" id="MyMenuGroup" priority="0x0600">
+      <Group guid="guidToggleKarmaVsUnitCmdSet" id="KarmaVsMenuGroup" priority="0x0600">
         <Parent guid="guidSHLMainMenu" id="IDM_VS_MENU_TOOLS"/>
       </Group>
-      
-
 
     </Groups>
     
@@ -61,11 +59,18 @@
               <CommandFlag>DynamicVisibility</CommandFlag>
           If you do not want an image next to your command, remove the Icon node /> -->
 
-      <Button guid="guidOutputRedirectCmdSet" id="cmdidRedirectToOutputWindow" priority="0x0100" type="Button">
-        <Parent guid="guidOutputRedirectCmdSet" id="MyMenuGroup" />
+      <Button guid="guidToggleKarmaVsUnitCmdSet" id="cmdidToggleKarmaVsUnit" priority="0x0100" type="Button">
+        <Parent guid="guidToggleKarmaVsUnitCmdSet" id="KarmaVsMenuGroup" />
         <Icon guid="guidImages" id="bmpPic1" />
         <Strings>
-          <ButtonText>Enable/disable Karma...</ButtonText>
+          <ButtonText>Enable/disable Karma unit testing...</ButtonText>
+        </Strings>
+      </Button>
+      <Button guid="guidToggleKarmaVsE2eCmdSet" id="cmdidToggleKarmaVsE2e" priority="0x0100" type="Button">
+        <Parent guid="guidToggleKarmaVsE2eCmdSet" id="KarmaVsMenuGroup" />
+        <Icon guid="guidImages" id="bmpPic2" />
+        <Strings>
+          <ButtonText>Enable/disable Karma e2e testing...</ButtonText>
         </Strings>
       </Button>
 
@@ -92,15 +97,18 @@
 
   <Symbols>
     <!-- This is the package guid. -->
-    <GuidSymbol name="guidOutputRedirectPkg" value="{7ca5e40e-4946-4da8-be1f-b3bab3e8adfc}" />
+    <GuidSymbol name="guidKarmaVsPkg" value="{7ca5e40e-4946-4da8-be1f-b3bab3e8adfc}" />
     
     <!-- This is the guid used to group the menu commands together -->
-    <GuidSymbol name="guidOutputRedirectCmdSet" value="{a91817b7-83bc-4d3b-bbac-67c87be2b5b5}">
-
-      <IDSymbol name="MyMenuGroup" value="0x1020" />
-      <IDSymbol name="cmdidRedirectToOutputWindow" value="0x0100" />
+    <GuidSymbol name="guidToggleKarmaVsE2eCmdSet" value="{a91817b7-83bc-4d3b-bbac-67c87be2b5b6}">
+      <IDSymbol name="KarmaVsMenuGroup" value="0x1020" />
+      <IDSymbol name="cmdidToggleKarmaVsE2e" value="0x0100" />
     </GuidSymbol>
-    
+
+    <GuidSymbol name="guidToggleKarmaVsUnitCmdSet" value="{a91817b7-83bc-4d3b-bbac-67c87be2b5b5}">
+      <IDSymbol name="KarmaVsMenuGroup" value="0x1020" />
+      <IDSymbol name="cmdidToggleKarmaVsUnit" value="0x0100" />
+    </GuidSymbol>
     
     
     <GuidSymbol name="guidImages" value="{57273128-3ae8-4334-b050-c70338e9b2d2}" >

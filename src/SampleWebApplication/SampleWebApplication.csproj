@@ -57,6 +57,22 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="app\index.html" />
+    <Content Include="css\app.css" />
+    <Content Include="css\bootstrap-responsive.css" />
+    <Content Include="css\bootstrap-responsive.min.css" />
+    <Content Include="css\bootstrap.css" />
+    <Content Include="css\bootstrap.min.css" />
+    <Content Include="css\jasmine\jasmine.css" />
+    <Content Include="img\jasmine\favicon.png" />
+    <Content Include="js\app\directives\something.js" />
+    <Content Include="js\libs\jasmine\jasmine-html.js" />
+    <Content Include="js\libs\jasmine\jasmine-intellisense.js" />
+    <Content Include="js\libs\jasmine\jasmine-runner.js" />
+    <Content Include="js\libs\jasmine\jasmine.min.js" />
+    <Content Include="js\tests\unit\runner.htm" />
+    <Content Include="karma.e2e.conf.js" />
+    <Content Include="karma.unit.conf.js" />
     <Content Include="js\app\app.js" />
     <Content Include="js\app\controllers\main.js" />
     <Content Include="js\app\directives\albums.js" />
@@ -66,10 +82,10 @@
     <Content Include="js\libs\angular\angular.js" />
     <Content Include="js\libs\angular\angular.min.js" />
     <Content Include="js\libs\angular\matcher-matchers.js" />
-    <Content Include="js\tests\runner.html" />
-    <Content Include="js\tests\specs\controllers\main.js" />
-    <Content Include="js\tests\specs\directives\albums.js" />
-    <Content Include="karma.conf.js" />
+    <Content Include="js\tests\e2e\scenario.js" />
+    <Content Include="js\tests\e2e\runner.html" />
+    <Content Include="js\tests\unit\controllers\main.tests.js" />
+    <Content Include="js\tests\unit\directives\albums.tests.js" />
     <Content Include="views\main.html" />
     <Content Include="views\templates\albums.html" />
     <Content Include="Web.config" />
@@ -78,6 +94,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="js\tests\unit\directives\something.tests.js" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
