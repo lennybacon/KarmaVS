@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en" ng-app="directiveExampleApp">
+<head>
+    <meta charset="utf-8">
+    <title>Szenario App</title>
+    <link rel="stylesheet" href="../css/app.css">
+    <link rel="stylesheet" href="../css/bootstrap.css">
+    <script src="../js/libs/angular/angular.js"></script>
+    <script src="../js/app/app.js"></script>
+    <script src="../js/app/controllers/main.js"></script>
+    <script src="../js/app/directives/validate.js"></script>
+</head>
+<body ng-controller="MainCtrl">
+
+    <div class="container-fluid">
+        <div class="row-fluid">
+            <div class="span2">
+                <!--Sidebar content-->
+
+                Search:
+                <input ng-model="query">
+            </div>
+            <div class="span10">
+                <!--Body content-->
+
+
+                <ul class="users">
+                    <li ng-repeat="user in users | filter:query">{{user.name}}
+           
+                        <p>{{user.snippet}}</p>
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+    </div>
+    <input data-validate="foo" type="text" data-ng-model="text">
+</body>
+</html>
