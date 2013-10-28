@@ -1,8 +1,9 @@
 'use strict';
 
 angular.module('directiveExampleApp')
-  .controller('MainCtrl', function ($scope) {
+  .controller('MainCtrl', function ($scope, appModelDataService) {
       $scope.foo = 42;
+      $scope.model = appModelDataService.getModel('');
       $scope.users = [
         {
             "name": "Obi-Wan \"Ben\" Kenobi",

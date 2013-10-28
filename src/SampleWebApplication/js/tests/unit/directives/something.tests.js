@@ -1,7 +1,7 @@
 /// <reference path="../../../libs/angular/angular.js" />
 /// <reference path="../../../libs/angular-mocks/angular-mocks.js" />
 /// <reference path="../../../app/app.js" />
-/// <reference path="../../../app/directives/validate.js" />
+/// <reference path="../../../app/directives/something.js" />
 /// <reference path="../../../libs/jasmine/jasmine-intellisense.js" />
 
 'use strict';
@@ -49,6 +49,12 @@ describe('Directive something', function () {
         expect(elem.val()).toBe('bar');
     });
     
+    it('should have the value of the foo property of the scope.', function () {
+        console.log(elem.scope());
+        elem.scope().focus();
+        expect(elem.val()).toBe('');
+    });
+
     it('should have the value of the foo property of the scope.', function () {
         elem[0].click();
         expect(elem.val()).toBe('42');

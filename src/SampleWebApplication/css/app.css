@@ -1,2 +1,7 @@
 ﻿body {
+
+}
+
+.ng-invalid {
+    border-color: red;
 }

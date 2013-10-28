@@ -1,16 +1,19 @@
 <!doctype html>
-<html lang="en" ng-app="directiveExampleApp">
+<html lang="en" data-ng-app="directiveExampleApp">
 <head>
     <meta charset="utf-8">
     <title>Szenario App</title>
     <link rel="stylesheet" href="../css/app.css">
     <link rel="stylesheet" href="../css/bootstrap.css">
     <script src="../js/libs/angular/angular.js"></script>
+    
     <script src="../js/app/app.js"></script>
+    <script src="../js/app/services/appModelDataService.js"></script>
     <script src="../js/app/controllers/main.js"></script>
+    
     <script src="../js/app/directives/validate.js"></script>
 </head>
-<body ng-controller="MainCtrl">
+<body data-ng-controller="MainCtrl">
 
     <div class="container-fluid">
         <div class="row-fluid">
@@ -18,14 +21,14 @@
                 <!--Sidebar content-->
 
                 Search:
-                <input ng-model="query">
+                <input data-ng-model="query">
             </div>
             <div class="span10">
                 <!--Body content-->
 
 
                 <ul class="users">
-                    <li ng-repeat="user in users | filter:query">{{user.name}}
+                    <li data-ng-repeat="user in users | filter:query">{{user.name}}
            
                         <p>{{user.snippet}}</p>
                     </li>
@@ -34,6 +37,6 @@
             </div>
         </div>
     </div>
-    <input data-validate="foo" type="text" data-ng-model="text">
+    <input type="text" data-ng-model="model.accountNumber" data-validate="accountNumber"/>
 </body>
 </html>

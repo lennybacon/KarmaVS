@@ -47,10 +47,10 @@
   };
 
   ngMidwayTester.prototype.attach = function(name) {
-    //var html = this.html();
-    //html.setAttribute('data-ng-app',name);
+    var html = this.html();
+    html.setAttribute('data-ng-app',name);
     var body = this.body();
-    body.innerHTML += '<div data-ng-app="' + name + '"></div>';
+    body.innerHTML += '<div id="data-ng-view" data-ng-view></div>';
     angular.bootstrap(html, [name]);
   };
 

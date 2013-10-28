@@ -65,11 +65,21 @@
     <Content Include="css\bootstrap.min.css" />
     <Content Include="css\jasmine\jasmine.css" />
     <Content Include="img\jasmine\favicon.png" />
+    <Content Include="js\app\directives\validate.js" />
     <Content Include="js\app\directives\something.js" />
+    <Content Include="js\app\services\appModelDataService.js" />
+    <Content Include="js\libs\angular\ngMidwayTester - Copy.js" />
+    <Content Include="js\libs\angular\ngMidwayTester.js" />
     <Content Include="js\libs\jasmine\jasmine-html.js" />
     <Content Include="js\libs\jasmine\jasmine-intellisense.js" />
     <Content Include="js\libs\jasmine\jasmine-runner.js" />
     <Content Include="js\libs\jasmine\jasmine.min.js" />
+    <Content Include="js\tests\mid\directives\validate.tests.htm" />
+    <Content Include="js\tests\mid\directives\validate.tests.js" />
+    <Content Include="js\tests\mid\directives\views\main.html" />
+    <Content Include="js\tests\unit\directives\validate.tests.htm" />
+    <Content Include="js\tests\unit\directives\something.tests.htm" />
+    <Content Include="js\tests\unit\directives\validate.tests.js" />
     <Content Include="js\tests\unit\runner.htm" />
     <Content Include="karma.e2e.conf.js" />
     <Content Include="karma.unit.conf.js" />
@@ -95,6 +105,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="js\tests\unit\directives\something.tests.js" />
+    <Content Include="js\libs\angular\angular.min.js.map">
+      <DependentUpon>angular.js</DependentUpon>
+    </Content>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -102,6 +115,7 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

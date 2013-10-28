@@ -9,11 +9,20 @@ angular.module('directiveExampleApp')
 	        // defaults, and just providing a linking function.
 
 	        return function(scope, elem, attrs) {
-	            elem.bind('click', function () {
-	                var newValue = scope.$eval(attrs.validate);
-	                console.log(newValue);
+
+	            scope.click = function() {
+	                console.log('new value: ' + attrs.something);
+	                var newValue = scope.$eval(attrs.something);
+	                console.log('new value: ' + newValue);
 	                elem.val(newValue);
-	            });
+	            };
+
+	            scope.focus = function () {
+	                console.log('focus');
+	            };
+
+	            elem.bind('click', scope.click);
+	            elem.bind('focus', scope.focus);
 	        };
 	    }
 	);
