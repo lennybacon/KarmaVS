@@ -399,7 +399,7 @@ namespace devcoach.Tools
             var chromeFilePath =
               Path.Combine(
                 Environment.GetFolderPath(
-                  Environment.SpecialFolder.CommonProgramFiles),
+                  Environment.SpecialFolder.ProgramFiles),
                 "Google\\Chrome\\Application\\chrome.exe");
             if (File.Exists(chromeFilePath))
             {
@@ -409,7 +409,7 @@ namespace devcoach.Tools
             chromeFilePath =
               Path.Combine(
                 Environment.GetFolderPath(
-                  Environment.SpecialFolder.CommonProgramFilesX86),
+                  Environment.SpecialFolder.ProgramFilesX86),
                 "Google\\Chrome\\Application\\chrome.exe");
 
             if (File.Exists(chromeFilePath))
@@ -437,7 +437,7 @@ namespace devcoach.Tools
             var mozillaFilePath =
                 Path.Combine(
                     Environment.GetFolderPath(
-                        Environment.SpecialFolder.CommonProgramFiles),
+                        Environment.SpecialFolder.ProgramFiles),
                     "Mozilla Firefox\\firefox.exe");
             if (File.Exists(mozillaFilePath))
             {
@@ -446,7 +446,7 @@ namespace devcoach.Tools
             mozillaFilePath =
                 Path.Combine(
                     Environment.GetFolderPath(
-                        Environment.SpecialFolder.CommonProgramFilesX86),
+                        Environment.SpecialFolder.ProgramFilesX86),
                     "Mozilla Firefox\\firefox.exe");
             if (File.Exists(mozillaFilePath))
             {
