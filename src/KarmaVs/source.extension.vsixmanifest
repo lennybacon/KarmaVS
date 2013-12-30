@@ -5,6 +5,7 @@
     <DisplayName>KarmaVs</DisplayName>
     <Description xml:space="preserve">Use Karma for Continous JavaScript Testing with feedback through the Visual Studio Output Window</Description>
     <License>Resources\LICENSE.txt</License>
+    <Icon>Resources\devcoach_logo_48x48.png</Icon>
     <Tags>JavaScript EcmaScript Test Karma Angular Runner</Tags>
   </Metadata>
   <Installation InstalledByMsi="false">
