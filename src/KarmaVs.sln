@@ -1,15 +1,21 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KarmaVs", "KarmaVs\KarmaVs.csproj", "{1EB55045-B486-467D-B239-56010D702375}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleWebApplication", "SampleWebApplication\SampleWebApplication.csproj", "{5150F8B5-7C3B-4B17-94BE-1BDC0CC76D27}"
-EndProject
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{BA399DFE-DF16-4EB9-AF26-7E58CFC623CA}"
 	ProjectSection(SolutionItems) = preProject
 		..\LICENSE.txt = ..\LICENSE.txt
 		..\README.md = ..\README.md
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KarmaVs", "KarmaVs\KarmaVs.csproj", "{1EB55045-B486-467D-B239-56010D702375}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleWebApplication", "SampleWebApplication\SampleWebApplication.csproj", "{5150F8B5-7C3B-4B17-94BE-1BDC0CC76D27}"
+EndProject
+Project("{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}") = "SampleNodejsApp", "SampleNodejsApp\SampleNodejsApp.njsproj", "{1010958C-144B-4C6E-B932-DF5722471B3C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Samples", "Samples", "{10A7CF3B-397E-4434-BAA1-710FB6D8A191}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,8 +31,15 @@ Global
 		{5150F8B5-7C3B-4B17-94BE-1BDC0CC76D27}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5150F8B5-7C3B-4B17-94BE-1BDC0CC76D27}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5150F8B5-7C3B-4B17-94BE-1BDC0CC76D27}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1010958C-144B-4C6E-B932-DF5722471B3C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1010958C-144B-4C6E-B932-DF5722471B3C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1010958C-144B-4C6E-B932-DF5722471B3C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1010958C-144B-4C6E-B932-DF5722471B3C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{5150F8B5-7C3B-4B17-94BE-1BDC0CC76D27} = {10A7CF3B-397E-4434-BAA1-710FB6D8A191}
 	EndGlobalSection
 EndGlobal
