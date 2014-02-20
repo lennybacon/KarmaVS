@@ -179,8 +179,7 @@ namespace devcoach.Tools
       }
 
 
-      var projects = GetProjects().
-        ToDictionary(project => project.Name, project => project);
+      var projects = GetProjects();
 
       const string webApplication = "{349C5851-65DF-11DA-9384-00065B846F21}";
       const string webSite = "{E24C65DC-7377-472B-9ABA-BC803B73C61A}";
@@ -188,7 +187,7 @@ namespace devcoach.Tools
       Project karmaProject = null;
       string karmaConfigFilePath = null;
       string projectDir = null;
-      foreach (var project in projects.Values)
+      foreach (var project in projects)
       {
         try
         {
