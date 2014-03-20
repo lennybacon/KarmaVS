@@ -184,6 +184,7 @@ namespace devcoach.Tools
 
       const string webApplication = "{349C5851-65DF-11DA-9384-00065B846F21}";
       const string webSite = "{E24C65DC-7377-472B-9ABA-BC803B73C61A}";
+      const string testProject = "{3AC096D0-A1C2-E12C-1390-A8335801FDAB}";
 
       Project karmaProject = null;
       string karmaConfigFilePath = null;
@@ -198,10 +199,11 @@ namespace devcoach.Tools
               "DEBUG: project '" + project.Name + "' found; GUIDs: " + projectGuids);
 
           if (projectGuids.Contains(webApplication) ||
-              projectGuids.Contains(webSite))
+              projectGuids.Contains(webSite) ||
+              projectGuids.Contains(testProject))
           {
             _karmaOutputWindowPane.OutputString(
-                "INFO: Web project found: " + project.Name);
+                "INFO: Web / Test project found: " + project.Name);
             _karmaOutputWindowPane.OutputString(Environment.NewLine);
 
             projectDir =
