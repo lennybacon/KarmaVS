@@ -185,6 +185,7 @@ namespace devcoach.Tools
       const string webApplication = "{349C5851-65DF-11DA-9384-00065B846F21}";
       const string webSite = "{E24C65DC-7377-472B-9ABA-BC803B73C61A}";
       const string testProject = "{3AC096D0-A1C2-E12C-1390-A8335801FDAB}";
+      const string appBuilder = "{070BCB52-5A75-4F8C-A973-144AF0EAFCC9}";
 
       Project karmaProject = null;
       string karmaConfigFilePath = null;
@@ -200,7 +201,8 @@ namespace devcoach.Tools
 
           if (projectGuids.Contains(webApplication) ||
               projectGuids.Contains(webSite) ||
-              projectGuids.Contains(testProject))
+              projectGuids.Contains(testProject) ||
+              projectGuids.Contains(appBuilder))
           {
             _karmaOutputWindowPane.OutputString(
                 "INFO: Web / Test project found: " + project.Name);
@@ -208,6 +210,19 @@ namespace devcoach.Tools
 
             projectDir =
                 Path.GetDirectoryName(project.FileName);
+                
+            if (string.IsNullOrWhiteSpace(projectDir))
+            {
+                try
+                {
+                    var fullPath = project.Properties.Item("FullPath");
+                    projectDir = fullPath.Value.ToString();
+                }
+                catch (ArgumentException)
+                {
+                    
+                }
+            }
 
             karmaConfigFilePath =
                 Path.Combine(projectDir, "karma." + config + ".conf.js");
